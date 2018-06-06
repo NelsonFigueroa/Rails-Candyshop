@@ -1,0 +1,26 @@
+<h2>Shop Details: <%= @shop.name %></h2>
+
+<%= link_to("<< Back to Shops List", shops_path, :class => 'back-link') %>
+
+<br><br>
+
+<%= link_to("Generate Candy", new_candy_path, :class => 'action new') %>
+
+
+<br><br>
+
+
+Unshelved Inventory: <br>
+<%
+  # @unshelved candy scope
+  # loop through it here
+  # but is it okay to put it in the shop controller ... ?
+%>
+
+Shelves: <br>
+<%
+  # Create shelf model
+  # Loop through all shelves
+  # @shop.shelves.each do |shelf|
+  # print info and maybe another nested loop for each candy
+%>

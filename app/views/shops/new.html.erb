@@ -1,0 +1,22 @@
+<h2>Create new shop</h2>
+
+<%= link_to("<< Back to Shops List", shops_path, :class => 'back-link') %>
+
+<br><br>
+
+<%= form_for(@shop) do |f| %>
+
+<table summary="Shop form fields">
+  <tr>
+    <th>Name</th>
+    <td><%= f.text_field(:name) %></td>
+  </tr>
+  <tr>
+    <th>City</th>
+    <td><%= f.text_field(:city) %></td>
+  </tr>
+</table>
+
+<%= f.submit("Create Shop") %>
+
+<% end %>

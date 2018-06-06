@@ -1,0 +1,13 @@
+<h2>Shops Database</h2>
+
+<%= link_to("Add New Shop", new_shop_path, :class => 'action new') %>
+
+<br><br>
+
+<% @shops.each do |shop| %>
+  Shop ID: <%= shop.id %> <br>
+  Shop name: <%= shop.name %> <br>
+  <%= link_to("Show Details", shop_path(shop), :class => 'action show') %>
+  <%= link_to("Delete", delete_shop_path(shop), :class => 'action delete') %>
+  <br><br>
+<% end %>

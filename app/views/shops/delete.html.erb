@@ -1,0 +1,19 @@
+<h2>Delete shop?</h2>
+
+<%= link_to("<< Back to Shops List", shops_path, :class => 'back-link') %>
+
+<br><br>
+
+This will delete shop and all associated shelves/candies
+<%
+  # Figure out how to delete all associated shelves and candies
+  # unshelved candies scope. if candy.shop_id = shop.id , .destroy
+  # same with shelves.
+%>
+
+<%= form_for(@shop, :method => 'delete') do |f| %>
+
+<p>Permanently delete this shop? : <%= f.object.name %></p>
+
+<%= f.submit("Delete Shop") %>
+<% end %>
