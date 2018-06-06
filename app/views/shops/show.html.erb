@@ -11,16 +11,34 @@
 <br><br>
 
 
-<h3>Unshelved Inventory: </h3><br>
+<h3>Unshelved Inventory: </h3>
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Amount</th>
+    <th>Options</th>
+  </tr>
+  <% @shop.candies.unshelved.each do |candy| %>
+    <tr>
+      <td><%= candy.name %></td>
+      <td><%= candy.amount %></td>
+      <td><%= link_to("Delete", delete_candy_path(candy, :shop_id => @shop.id), :class => 'action delete') %></td>
+    </tr>
+  <% end %>
+</table>
 
-<% @shop.candies.unshelved.each do |candy| %>
-  Candy Name: <%= candy.name %> <br>
-  Amount: <%= candy.amount %> <br>
-  <br>
-<% end %>
-
-<h3>Shelves: </h3><br>
+<h3>Shelves: </h3>
 
 <% @shop.shelves.each do |shelf| %>
   Shelf ID: <%= shelf.id %>
+
+  <%
+    # Put these in a <table> like with unshelved inventory. Each shelf will have a table
+    # Nested loop to print out all candies for each corresponding shelf
+    # @candies = shelf.candies
+    # @candies.each do |candy|
+    #   print candy info
+    # end
+  %>
+
 <% end %>

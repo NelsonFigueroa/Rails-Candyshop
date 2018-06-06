@@ -22,7 +22,16 @@ class CandiesController < ApplicationController
     else
       render('new')
     end
+  end
 
+  def delete
+    @candy = Candy.find(params[:id])
+  end
+
+  def destroy
+    @candy = Candy.find(params[:id])
+    @candy.destroy
+    redirect_to(shop_path(:id => @shop.id))
   end
 
   private

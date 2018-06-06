@@ -22,6 +22,12 @@ class ShelvesController < ApplicationController
     end
   end
 
+  def delete
+  end
+
+  def destroy
+  end
+
   private
 
   def get_shop
