@@ -4,18 +4,19 @@
 
 <br><br>
 
-<%= link_to("Generate Candy", new_candy_path, :class => 'action new') %>
+<%= link_to("Generate Candy", new_candy_path(:shop_id => @shop.id), :class => 'action new') %>
 
 
 <br><br>
 
 
 Unshelved Inventory: <br>
-<%
-  # @unshelved candy scope
-  # loop through it here
-  # but is it okay to put it in the shop controller ... ?
-%>
+
+<% @shop.candies.unshelved.each do |candy| %>
+  Candy Name: <%= candy.name %> <br>
+  Amount: <%= candy.amount %> <br>
+  <br>
+<% end %>
 
 Shelves: <br>
 <%

@@ -1,19 +1,16 @@
 <h2>Generate new candy</h2>
 
-<%= link_to("<< Back to Shops List", shops_path, :class => 'back-link') %>
+<%= link_to("<< Back to Shop", shop_path(:id => @shop.id), :class => 'back-link') %>
 
 <br><br>
+Generate new candy in shop: <%= @shop.name %> <br>
 
-<%= form_for(@candy) do |f| %>
+<%= form_for(@candy, :url => candies_path(:shop_id => @shop.id)) do |f| %>
 
 <table summary="Candy form fields">
   <tr>
     <th>Name</th>
     <td><%= f.text_field(:name) %></td>
-  </tr>
-  <tr>
-    <th>Calories</th>
-    <td><%= f.text_field(:calories) %></td>
   </tr>
   <tr>
     <th>Amount</th>

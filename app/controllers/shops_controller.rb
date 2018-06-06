@@ -6,6 +6,13 @@ class ShopsController < ApplicationController
 
   def show
     @shop = Shop.find(params[:id])
+    @unshelved_candies = @shop.candies.unshelved
+    @shelved_candies = @shop.candies.shelved
+
+    # To be used in loop: @shop.shelves.each do |shelf|
+    #   Candies in each shelf
+    #   figure it out, must match shelf id and shop id.
+    #   @shop.shelf.candies.each do |candy|
   end
 
   def new
