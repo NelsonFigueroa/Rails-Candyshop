@@ -5,12 +5,13 @@
 <br><br>
 
 <%= link_to("Generate Candy", new_candy_path(:shop_id => @shop.id), :class => 'action new') %>
+<%= link_to("Add Shelf", shelves_path(:shop_id => @shop.id), :class => 'action create', method: :post) %>
 
 
 <br><br>
 
 
-Unshelved Inventory: <br>
+<h3>Unshelved Inventory: </h3><br>
 
 <% @shop.candies.unshelved.each do |candy| %>
   Candy Name: <%= candy.name %> <br>
@@ -18,10 +19,8 @@ Unshelved Inventory: <br>
   <br>
 <% end %>
 
-Shelves: <br>
-<%
-  # Create shelf model
-  # Loop through all shelves
-  # @shop.shelves.each do |shelf|
-  # print info and maybe another nested loop for each candy
-%>
+<h3>Shelves: </h3><br>
+
+<% @shop.shelves.each do |shelf| %>
+  Shelf ID: <%= shelf.id %>
+<% end %>
