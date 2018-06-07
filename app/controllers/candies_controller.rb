@@ -31,10 +31,12 @@ class CandiesController < ApplicationController
   def update
     @candy = Candy.find(params[:id])
 
+    # Ensure that if shelf_id is not null, shelf and candy are in the same shop 
+
     if @candy.update_attributes(update_params)
       redirect_to(shop_path(:id => @shop.id))
     else
-      redirect_to(shop_path(:id => @shop.id))
+      render('edit')
     end
   end
 
@@ -50,10 +52,12 @@ class CandiesController < ApplicationController
 
   private
 
+  # Used when creating new candies
   def candy_params
     params.require(:candy).permit(:name, :amount, :shop_id)
   end
 
+  # Used when updating candies and moving from shelves
   def update_params
     params.require(:candy).permit(:shelf_id)
   end
