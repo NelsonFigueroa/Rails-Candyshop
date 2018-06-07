@@ -1,0 +1,16 @@
+<h2>Move candy</h2>
+
+<%= link_to("<< Back to Shop", shop_path(:id => @shop.id), :class => 'back-link') %>
+
+<br><br>
+
+<%= form_for(@candy, :url => candy_path(:shop_id => @shop.id)) do |f| %>
+<p>Leave blank to unshelf candy</p>
+<table summary="Candy form fields">
+  <tr>
+    <th>Shelf ID</th>
+    <td><%= f.text_field(:shelf_id) %></td>
+  </tr>
+</table>
+<%= f.submit("Move Candy") %>
+<% end %>

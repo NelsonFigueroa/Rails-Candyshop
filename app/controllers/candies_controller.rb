@@ -24,6 +24,20 @@ class CandiesController < ApplicationController
     end
   end
 
+  def edit
+    @candy = Candy.find(params[:id])
+  end
+
+  def update
+    @candy = Candy.find(params[:id])
+
+    if @candy.update_attributes(update_params)
+      redirect_to(shop_path(:id => @shop.id))
+    else
+      redirect_to(shop_path(:id => @shop.id))
+    end
+  end
+
   def delete
     @candy = Candy.find(params[:id])
   end
@@ -38,6 +52,10 @@ class CandiesController < ApplicationController
 
   def candy_params
     params.require(:candy).permit(:name, :amount, :shop_id)
+  end
+
+  def update_params
+    params.require(:candy).permit(:shelf_id)
   end
 
   def get_shop

@@ -22,7 +22,10 @@
     <tr>
       <td><%= candy.name %></td>
       <td><%= candy.amount %></td>
-      <td><%= link_to("Delete", delete_candy_path(candy, :shop_id => @shop.id), :class => 'action delete') %></td>
+      <td>
+        <%= link_to("Delete", delete_candy_path(candy, :shop_id => @shop.id), :class => 'action delete') %>
+        <%= link_to("Move", edit_candy_path(candy, :shop_id => @shop.id), :class => 'action edit') %>
+      </td>
     </tr>
   <% end %>
 </table>
@@ -31,14 +34,23 @@
 
 <% @shop.shelves.each do |shelf| %>
   Shelf ID: <%= shelf.id %>
-
-  <%
-    # Put these in a <table> like with unshelved inventory. Each shelf will have a table
-    # Nested loop to print out all candies for each corresponding shelf
-    # @candies = shelf.candies
-    # @candies.each do |candy|
-    #   print candy info
-    # end
-  %>
-
+  <%= link_to("Delete", delete_shelf_path(shelf, :shop_id => @shop.id), :class => 'action delete') %>
+  <table>
+    <tr>
+      <th>Name</th>
+      <th>Amount</th>
+      <th>Options</th>
+    </tr>
+    <% shelf.candies.each do |candy| %>
+      <tr>
+        <td><%= candy.name %></td>
+        <td><%= candy.amount %></td>
+        <td>
+          <%= link_to("Delete", delete_candy_path(candy, :shop_id => @shop.id), :class => 'action delete') %>
+          <%= link_to("Move", edit_candy_path(candy, :shop_id => @shop.id), :class => 'action edit') %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+  <br>
 <% end %>

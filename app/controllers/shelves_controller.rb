@@ -22,10 +22,27 @@ class ShelvesController < ApplicationController
     end
   end
 
+  # def edit
+  # end
+
+  # def update
+  # end
+
   def delete
+    @shelf = Shelf.find(params[:id])
   end
 
   def destroy
+    @shelf = Shelf.find(params[:id])
+
+    # Set all candies in shelf to unshelved
+    @shelf.candies.each do |candy|
+      candy.shelf_id = nil
+      candy.save
+    end
+
+    @shelf.destroy
+    redirect_to(shop_path(:id => @shop.id))
   end
 
   private
