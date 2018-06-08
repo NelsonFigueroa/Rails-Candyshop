@@ -31,8 +31,6 @@ class CandiesController < ApplicationController
   def update
     @candy = Candy.find(params[:id])
 
-    # Ensure that if shelf_id is not null, shelf and candy are in the same shop 
-
     if @candy.update_attributes(update_params)
       redirect_to(shop_path(:id => @shop.id))
     else

@@ -6,6 +6,7 @@ class Candy < ApplicationRecord
   validates :name, presence: true
   validates :amount, presence: true
   validates_numericality_of :amount
+  validates_numericality_of :shelf_id, allow_nil: true
 
   scope :unshelved, lambda {where(:shelf_id => nil)}
   scope :shelved, lambda {where.not(:shelf_id => nil)}
