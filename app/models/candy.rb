@@ -4,8 +4,7 @@ class Candy < ApplicationRecord
   belongs_to :shelf, optional: true
 
   validates :name, presence: true
-  validates :amount, presence: true
-  validates_numericality_of :amount
+  validates :amount, presence: true, numericality: { greater_than: 0 }
   validates_numericality_of :shelf_id, allow_nil: true
 
   scope :unshelved, lambda {where(:shelf_id => nil)}

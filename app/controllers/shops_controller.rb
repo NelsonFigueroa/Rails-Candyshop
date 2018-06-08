@@ -36,16 +36,6 @@ class ShopsController < ApplicationController
   def destroy
     @shop = Shop.find(params[:id])
 
-    # Destroy all shelves in shop
-    @shop.shelves.each do |shelf|
-      shelf.destroy
-    end
-
-    # Destroy all candies in shop
-    @shop.candies.each do |candy|
-      candy.destroy
-    end
-
     @shop.destroy
     redirect_to(shops_path)
   end
