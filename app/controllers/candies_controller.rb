@@ -31,7 +31,7 @@ class CandiesController < ApplicationController
   def update
     @candy = Candy.find(params[:id])
 
-    if @candy.update_attributes(update_params)
+    if @candy.update_attributes(candy_params)
       redirect_to(shop_path(:id => @shop.id))
     else
       render('edit')
@@ -52,14 +52,10 @@ class CandiesController < ApplicationController
 
   # Used when creating new candies
   def candy_params
-    params.require(:candy).permit(:name, :amount, :shop_id)
+    params.require(:candy).permit(:name, :amount, :shop_id, :shelf_id)
   end
 
-  # Used when updating candies and moving from shelves
-  def update_params
-    params.require(:candy).permit(:shelf_id)
-  end
-
+  # Used to maintain appropriate shop_id throughout views
   def get_shop
     @shop = Shop.find(params[:shop_id])
   end
