@@ -15,6 +15,7 @@ class ShelvesController < ApplicationController
     @shelf = Shelf.new(:shop_id => @shop.id)
 
     if @shelf.save
+      flash[:message] = "New shelf created!"
       redirect_to(shop_path(:id => @shop.id))
     else
       # Flash hash with message: "Save failed" or whatever
@@ -42,6 +43,7 @@ class ShelvesController < ApplicationController
     end
 
     @shelf.destroy
+    flash[:message] = "Shelf deleted."
     redirect_to(shop_path(:id => @shop.id))
   end
 

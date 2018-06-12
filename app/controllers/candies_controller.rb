@@ -18,6 +18,7 @@ class CandiesController < ApplicationController
     @candy.shop_id = @shop.id
 
     if @candy.save
+      flash[:message] = "Candy \"" + @candy.name + "\" created!"
       redirect_to(shop_path(:id => @shop.id))
     else
       render('new')
@@ -37,6 +38,7 @@ class CandiesController < ApplicationController
     # Method call to model to make sure shelf is valid
     if @shelf_id.blank? || @candy.valid_shelf(@shelf_id) == true
       if @candy.update_attributes(candy_params)
+        flash[:message] = "Candy moved"
         redirect_to(shop_path(:id => @shop.id))
       else
         # If unable to save, render edit
@@ -44,6 +46,7 @@ class CandiesController < ApplicationController
       end
     else
       # Shelf is not valid
+      flash[:message] = "Shelf must be in current shop."
       render('edit')
     end
   end # End update action
@@ -55,6 +58,7 @@ class CandiesController < ApplicationController
   def destroy
     @candy = Candy.find(params[:id])
     @candy.destroy
+    flash[:message] = "Candy deleted."
     redirect_to(shop_path(:id => @shop.id))
   end
 

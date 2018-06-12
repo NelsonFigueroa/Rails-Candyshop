@@ -16,8 +16,10 @@ class ShopsController < ApplicationController
     @shop = Shop.new(shop_params)
 
     if @shop.save
+      flash[:message] = "New shop \"" + @shop.name + "\" created!"
       redirect_to(shops_path)
     else
+      flash[:message] = "Invalid input!"
       render('new')
     end
 
@@ -37,6 +39,7 @@ class ShopsController < ApplicationController
     @shop = Shop.find(params[:id])
 
     @shop.destroy
+    flash[:message] = "Shop deleted."
     redirect_to(shops_path)
   end
 
