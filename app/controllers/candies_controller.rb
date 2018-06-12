@@ -39,9 +39,11 @@ class CandiesController < ApplicationController
       if @candy.update_attributes(candy_params)
         redirect_to(shop_path(:id => @shop.id))
       else
+        # If unable to save, render edit
         render('edit')
       end
     else
+      # Shelf is not valid
       render('edit')
     end
   end # End update action
