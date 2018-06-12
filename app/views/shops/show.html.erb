@@ -12,7 +12,7 @@
 
 
 <h3>Unshelved Inventory: </h3>
-<table>
+<table class="table table-sm table-bordered table-striped table-hover">
   <tr>
     <th>Name</th>
     <th>Amount</th>
@@ -24,6 +24,7 @@
       <td><%= candy.amount %></td>
       <td>
         <%= link_to("Delete", delete_candy_path(candy, :shop_id => @shop.id), :class => 'action delete') %>
+        |
         <%= link_to("Move", edit_candy_path(candy, :shop_id => @shop.id), :class => 'action edit') %>
       </td>
     </tr>
@@ -33,9 +34,11 @@
 <h3>Shelves: </h3>
 
 <% @shop.shelves.each do |shelf| %>
-  Shelf ID: <%= shelf.id %>
-  <%= link_to("Delete", delete_shelf_path(shelf, :shop_id => @shop.id), :class => 'action delete') %>
-  <table>
+  <p>
+    Shelf ID: <%= shelf.id %>
+    <%= link_to("Delete", delete_shelf_path(shelf, :shop_id => @shop.id), :class => 'action delete') %>
+  </p>
+  <table class="table table-sm table-bordered table-striped table-hover">
     <tr>
       <th>Name</th>
       <th>Amount</th>
@@ -47,6 +50,7 @@
         <td><%= candy.amount %></td>
         <td>
           <%= link_to("Delete", delete_candy_path(candy, :shop_id => @shop.id), :class => 'action delete') %>
+          |
           <%= link_to("Move", edit_candy_path(candy, :shop_id => @shop.id), :class => 'action edit') %>
         </td>
       </tr>

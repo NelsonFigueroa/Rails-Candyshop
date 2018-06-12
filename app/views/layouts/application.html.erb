@@ -2,6 +2,7 @@
 <html>
   <head>
     <title>Candyshop</title>
+
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -9,10 +10,19 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
+  <div class="bg-dark text-white">
   <body>
+    <div class ="container">
+      <% if !flash[:message].blank? %>
+        <div class="alert alert-primary">
+          <%= flash[:message] %>
+        </div>
+      <% end %>
 
-    <%= flash[:message] %>
-    <%= yield %>
+      <%= yield %>
 
+    </div>
   </body>
+  </div>
+
 </html>
