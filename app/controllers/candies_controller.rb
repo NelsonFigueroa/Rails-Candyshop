@@ -31,12 +31,20 @@ class CandiesController < ApplicationController
   def update
     @candy = Candy.find(params[:id])
 
-    if @candy.update_attributes(candy_params)
-      redirect_to(shop_path(:id => @shop.id))
+    # Assign shelf_id to variable
+    @shelf_id = candy_params[:shelf_id]
+
+    # Method call to model to make sure shelf is valid
+    if @shelf_id.blank? || @candy.valid_shelf(@shelf_id) == true
+      if @candy.update_attributes(candy_params)
+        redirect_to(shop_path(:id => @shop.id))
+      else
+        render('edit')
+      end
     else
       render('edit')
     end
-  end
+  end # End update action
 
   def delete
     @candy = Candy.find(params[:id])
