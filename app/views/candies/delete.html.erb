@@ -1,6 +1,6 @@
 <h2>Delete candy?</h2>
 
-<%= link_to("<< Back to Shop", shop_path(:id => @shop.id), :class => 'back-link') %>
+<%= link_to("Back to Shop", shop_path(:id => @shop.id), :class => 'btn btn-primary btn-sm') %>
 
 <br><br>
 
@@ -8,5 +8,5 @@
 
 <p>Permanently delete this candy? : <%= f.object.name %></p>
 
-<%= f.submit("Delete Candy", :class => 'btn btn-secondary') %>
+<%= f.submit("Delete Candy", :class => 'btn btn-danger') %>
 <% end %>

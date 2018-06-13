@@ -1,6 +1,6 @@
 <h2>Move candy</h2>
 
-<%= link_to("<< Back to Shop", shop_path(:id => @shop.id), :class => 'back-link') %>
+<%= link_to("Back to Shop", shop_path(:id => @shop.id), :class => 'btn btn-primary btn-sm') %>
 
 <br><br>
 
@@ -12,5 +12,5 @@
     <td><%= f.text_field(:shelf_id) %></td>
   </tr>
 </table>
-<%= f.submit("Move Candy", :class => 'btn btn-secondary') %>
+<%= f.submit("Move Candy", :class => 'btn btn-primary') %>
 <% end %>

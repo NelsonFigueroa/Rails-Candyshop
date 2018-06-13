@@ -1,6 +1,6 @@
 <h2>Delete shelf?</h2>
 
-<%= link_to("<< Back to Shop", shop_path(:id => @shop.id), :class => 'back-link') %>
+<%= link_to("Back to Shop", shop_path(:id => @shop.id), :class => 'btn btn-primary btn-sm') %>
 
 <br><br>
 
@@ -8,5 +8,5 @@
 
 <p>Permanently delete Shelf with ID <%= f.object.id %>? Candies will be moved to unshelved.</p>
 
-<%= f.submit("Delete Shelf", :class => 'btn btn-secondary') %>
+<%= f.submit("Delete Shelf", :class => 'btn btn-danger') %>
 <% end %>
