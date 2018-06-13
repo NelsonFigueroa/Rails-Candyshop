@@ -4,19 +4,19 @@ Rails.application.routes.draw do
   # get 'candies/index'
   # get 'shelves/index'
 
-  resources :shops do
+  resources :shops, :except => [:edit, :update] do
     member do
       get :delete
     end
   end
 
-  resources :candies do
+  resources :candies, :except => [:index, :show] do
     member do
       get :delete
     end
   end
 
-  resources :shelves do
+  resources :shelves, :except => [:index, :show, :new, :edit, :update] do
     member do
       get :delete
     end

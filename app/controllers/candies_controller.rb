@@ -2,9 +2,8 @@ class CandiesController < ApplicationController
 
   before_action :get_shop
 
-  def index
-
-  end
+  # def index
+  # end
 
   # def show
   # end
