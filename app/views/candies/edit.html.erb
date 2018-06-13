@@ -5,12 +5,14 @@
 <br><br>
 
 <%= form_for(@candy, :url => candy_path(:shop_id => @shop.id)) do |f| %>
-<p>Leave blank to unshelf candy</p>
-<table summary="Candy form fields">
-  <tr>
-    <th>Shelf ID</th>
-    <td><%= f.text_field(:shelf_id) %></td>
-  </tr>
-</table>
-<%= f.submit("Move Candy", :class => 'btn btn-primary') %>
+
+<div class="card">
+  <div class="card-body">
+    <div class="form-group">
+      Shelf ID<%= f.text_field(:shelf_id, :class => 'form-control') %>
+      <small class="text-secondary">Leave blank to unshelf candy</small>
+    </div>
+    <%= f.submit("Move Candy", :class => 'btn btn-primary') %>
+  </div>
+</div>
 <% end %>

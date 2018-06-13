@@ -1,13 +1,13 @@
 <h2>Shops Database</h2>
 
-<%= link_to("Add New Shop", new_shop_path, :class => 'btn btn-primary') %>
+<%= link_to("Create New Shop", new_shop_path, :class => 'btn btn-primary') %>
 
 <br><br>
 
 <div class="card-deck">
 <% @shops.each do |shop| %>
 
-<div class=""> <!-- Need empty div so they align properly in all screen sizes -->
+<div class=""> <!-- Need empty div so they align properly in all screen sizes, idk why it works -->
   <div class="card mb-3">
     <div class="card-body">
       <h4 class="card-title"><%= shop.name %></h4>

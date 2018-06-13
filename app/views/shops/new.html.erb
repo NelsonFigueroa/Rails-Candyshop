@@ -6,17 +6,17 @@
 
 <%= form_for(@shop) do |f| %>
 
-<table summary="Shop form fields">
-  <tr>
-    <th>Name</th>
-    <td><%= f.text_field(:name) %></td>
-  </tr>
-  <tr>
-    <th>City</th>
-    <td><%= f.text_field(:city) %></td>
-  </tr>
-</table>
+  <div class="card">
+    <div class="card-body">
+      <div class="form-group">
+        Name: <%= f.text_field(:name, :class => 'form-control') %>
+        City: <%= f.text_field(:city, :class => 'form-control') %>
+      </div>
+      <%= f.submit("Create Shop", :class => 'btn btn-primary') %>
+    </div>
+  </div>
 
-<%= f.submit("Create Shop", :class => 'btn btn-primary') %>
+
+
 
 <% end %>
