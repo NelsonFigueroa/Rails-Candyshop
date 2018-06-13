@@ -1,8 +1,6 @@
 Rails.application.routes.draw do
 
   root 'shops#index'
-  # get 'candies/index'
-  # get 'shelves/index'
 
   resources :shops, :except => [:edit, :update] do
     member do
