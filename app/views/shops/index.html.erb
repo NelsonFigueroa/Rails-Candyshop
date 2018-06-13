@@ -4,10 +4,19 @@
 
 <br><br>
 
+<div class="card-deck">
 <% @shops.each do |shop| %>
-  <h4 class="text-nowrap"><%= shop.name %></h4>
-  <p class="text-secondary">Shop ID: <%= shop.id %></p>
-  <%= link_to("Show Details", shop_path(shop), :class => 'btn btn-primary btn-sm') %>
-  <%= link_to("Delete", delete_shop_path(shop), :class => 'btn btn-danger btn-sm') %>
-  <br><br><br>
+
+<div class=""> <!-- Need empty div so they align properly in all screen sizes -->
+  <div class="card mb-3">
+    <div class="card-body">
+      <h4 class="card-title"><%= shop.name %></h4>
+      <p class="text-secondary">Shop ID: <%= shop.id %></p>
+      <%= link_to("Show Details", shop_path(shop), :class => 'btn btn-primary btn-sm') %>
+      <%= link_to("Delete", delete_shop_path(shop), :class => 'btn btn-danger btn-sm') %>
+    </div>
+  </div>
+</div>
+
 <% end %>
+</div>

@@ -4,9 +4,13 @@
 
 <br><br>
 
-<%= form_for(@candy, :url => candy_path(:shop_id => @shop.id), :method => 'delete') do |f| %>
+<div class="card">
+  <div class="card-body">
+    <%= form_for(@candy, :url => candy_path(:shop_id => @shop.id), :method => 'delete') do |f| %>
 
-<p>Permanently delete this candy? : <%= f.object.name %></p>
+    <p>Permanently delete this candy? : <%= f.object.name %></p>
 
-<%= f.submit("Delete Candy", :class => 'btn btn-danger') %>
-<% end %>
+    <%= f.submit("Delete Candy", :class => 'btn btn-danger') %>
+    <% end %>
+  </div>
+</div>

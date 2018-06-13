@@ -3,10 +3,13 @@
 <%= link_to("Back to Shop", shop_path(:id => @shop.id), :class => 'btn btn-primary btn-sm') %>
 
 <br><br>
+<div class="card">
+  <div class="card-body">
+    <%= form_for(@shelf, :url => shelf_path(:shop_id => @shop.id), :method => 'delete') do |f| %>
 
-<%= form_for(@shelf, :url => shelf_path(:shop_id => @shop.id), :method => 'delete') do |f| %>
+    <p>Permanently delete Shelf with ID <%= f.object.id %>? Candies will be moved to unshelved.</p>
 
-<p>Permanently delete Shelf with ID <%= f.object.id %>? Candies will be moved to unshelved.</p>
-
-<%= f.submit("Delete Shelf", :class => 'btn btn-danger') %>
-<% end %>
+    <%= f.submit("Delete Shelf", :class => 'btn btn-danger') %>
+    <% end %>
+  </div>
+</div>

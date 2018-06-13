@@ -4,10 +4,14 @@
 
 <br><br>
 
-<%= form_for(@shop, :method => 'delete') do |f| %>
+<div class="card">
+  <div class="card-body">
+    <%= form_for(@shop, :method => 'delete') do |f| %>
 
-<p>Permanently delete this shop? : <%= f.object.name %></p>
-<p>This will also delete all associated shelves/candies</p>
+    <p>Permanently delete this shop? : <%= f.object.name %></p>
+    <p>This will also delete all associated shelves/candies</p>
 
-<%= f.submit("Delete Shop", :class => 'btn btn-danger') %>
-<% end %>
+    <%= f.submit("Delete Shop", :class => 'btn btn-danger') %>
+    <% end %>
+  </div>
+</div>
