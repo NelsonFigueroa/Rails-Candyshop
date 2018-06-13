@@ -1,6 +1,6 @@
 <h2>Delete shop?</h2>
 
-<%= link_to("<< Back to Shops List", shops_path, :class => 'back-link') %>
+<%= link_to("<< Back to Shops List", shops_path, :class => 'btn btn-primary btn-sm') %>
 
 <br><br>
 
@@ -9,5 +9,5 @@
 <p>Permanently delete this shop? : <%= f.object.name %></p>
 <p>This will also delete all associated shelves/candies</p>
 
-<%= f.submit("Delete Shop", :class => 'btn btn-secondary') %>
+<%= f.submit("Delete Shop", :class => 'btn btn-danger') %>
 <% end %>

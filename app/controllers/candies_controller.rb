@@ -21,6 +21,7 @@ class CandiesController < ApplicationController
       flash[:message] = "Candy \"" + @candy.name + "\" created!"
       redirect_to(shop_path(:id => @shop.id))
     else
+      flash[:message] = "Invalid candy fields."
       render('new')
     end
   end

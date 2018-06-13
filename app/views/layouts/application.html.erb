@@ -10,19 +10,21 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <div class="bg-dark text-white">
-  <body>
-    <div class ="container">
-      <% if !flash[:message].blank? %>
-        <div class="alert alert-primary">
-          <%= flash[:message] %>
+  <div class="">
+    <body>
+      <div class ="container">
+        <div class="row">
+          <div class="col-md-6 offset-md-3">
+            <% if !flash[:message].blank? %>
+              <div class="alert alert-dark center-block text-center">
+                <%= flash[:message] %>
+              </div>
+            <% end %>
+          </div>
         </div>
-      <% end %>
-
-      <%= yield %>
-
-    </div>
-  </body>
+        <%= yield %>
+      </div>
+    </body>
   </div>
 
 </html>
