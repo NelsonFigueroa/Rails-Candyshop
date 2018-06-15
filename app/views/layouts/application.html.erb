@@ -19,13 +19,17 @@
           <div class="col-md-6 offset-md-3">
             <% if !flash[:message].blank? %>
               <div class="alert alert-dark center-block text-center">
+                <%= image_tag "ultrafastparrot.gif", :size => '30x30', :class => 'img-fluid' %>
                 <%= flash[:message] %>
+                <%= image_tag "ultrafastparrot.gif", :size => '30x30', :class => 'img-fluid' %>
               </div>
             <% end %>
             <% unless notice.blank? && alert.blank? %>
               <div class="alert alert-dark center-block text-center">
+                <%= image_tag "ultrafastparrot.gif", :size => '30x30', :class => 'img-fluid' %>
                 <%= notice %>
                 <%= alert %>
+                <%= image_tag "ultrafastparrot.gif", :size => '30x30', :class => 'img-fluid' %>
               </div>
             <% end %>
           </div>
