@@ -1,7 +1,9 @@
 class ShopsController < ApplicationController
 
+  before_action :authenticate_user!
+
   def index
-    @shops = Shop.all
+    @shops = current_user.shops
   end
 
   def show
@@ -14,6 +16,7 @@ class ShopsController < ApplicationController
 
   def create
     @shop = Shop.new(shop_params)
+    @shop.user_id = current_user.id
 
     if @shop.save
       flash[:message] = "New shop \"" + @shop.name + "\" created!"
@@ -46,7 +49,7 @@ class ShopsController < ApplicationController
   private
 
   def shop_params
-    params.require(:shop).permit(:name, :city)
+    params.require(:shop).permit(:name, :city, :user_id)
   end
 
 end

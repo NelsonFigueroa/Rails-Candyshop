@@ -22,6 +22,12 @@
                 <%= flash[:message] %>
               </div>
             <% end %>
+            <% unless notice.blank? && alert.blank? %>
+              <div class="alert alert-dark center-block text-center">
+                <%= notice %>
+                <%= alert %>
+              </div>
+            <% end %>
           </div>
         </div>
         <%= yield %>
