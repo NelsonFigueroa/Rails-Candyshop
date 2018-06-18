@@ -65,7 +65,7 @@ class CandiesController < ApplicationController
 
   private
 
-  # Used when creating new candies
+  # Used when creating new candies or moving candies
   def candy_params
     params.require(:candy).permit(:name, :amount, :shop_id, :shelf_id)
   end
@@ -73,6 +73,18 @@ class CandiesController < ApplicationController
   # Used to maintain appropriate shop_id throughout views
   def get_shop
     @shop = Shop.find(params[:shop_id])
+  end
+
+  # Used to make sure candy belong to appropriate shop
+  # When generating candy, user is able to switch shop in the URL
+  # Use path parameters instead? IDs never show up in the URL in the first place...
+
+  def candy_belongs_to_user(candy)
+    if candy.shop.user_id == current_user.id
+      return true
+    else
+      return false
+    end
   end
 
 end
