@@ -11,6 +11,10 @@ class CandiesController < ApplicationController
 
   def new
     @candy = Candy.new(:shop_id => @shop.id)
+    if !candy_belongs_to_user(@candy)
+      flash[:message] = "This shop does not exist in your database."
+      redirect_to(shops_path)
+    end
   end
 
   def create
@@ -28,6 +32,10 @@ class CandiesController < ApplicationController
 
   def edit
     @candy = Candy.find(params[:id])
+    if !candy_belongs_to_user(@candy)
+      flash[:message] = "This shelf does not exist in your database."
+      redirect_to(shops_path)
+    end
   end
 
   def update
@@ -54,6 +62,10 @@ class CandiesController < ApplicationController
 
   def delete
     @candy = Candy.find(params[:id])
+    if !candy_belongs_to_user(@candy)
+      flash[:message] = "This candy does not exist in your database."
+      redirect_to(shops_path)
+    end
   end
 
   def destroy
@@ -76,8 +88,6 @@ class CandiesController < ApplicationController
   end
 
   # Used to make sure candy belong to appropriate shop
-  # When generating candy, user is able to switch shop in the URL
-  # Use path parameters instead? IDs never show up in the URL in the first place...
 
   def candy_belongs_to_user(candy)
     if candy.shop.user_id == current_user.id
