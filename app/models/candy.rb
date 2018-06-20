@@ -5,6 +5,7 @@ class Candy < ApplicationRecord
 
   validates :name, presence: true
   validates :amount, :presence => true, :numericality => { :greater_than => 0 }
+  validates :price, :presence => true, :numericality => { :greater_than => 0}
   validates_numericality_of :shelf_id, allow_nil: true
 
   # To ensure that candy and shelf are in the same shop
