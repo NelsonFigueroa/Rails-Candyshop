@@ -12,6 +12,13 @@ class ShopsController < ApplicationController
       flash[:message] = "This shop does not exist in your database."
       redirect_to(shops_path)
     end
+
+    # Gathering all existing shelves to display in drop-down
+    @shelf_id_nums = []
+    @shelf_id_nums << ''
+    @shop.shelves.each do |shelf|
+      @shelf_id_nums << shelf.id.to_s
+    end
   end
 
   def new
