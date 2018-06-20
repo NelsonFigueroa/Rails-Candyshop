@@ -27,7 +27,7 @@
       <td>
         <%= form_for(candy, :url => candy_path(candy, :shop_id => @shop.id)) do |f| %>
           <%= f.select :shelf_id, @shelf_id_nums, :selected => "" %>
-          <%= f.submit("Move Candy", :class => 'text-primary') %>
+          <%= f.submit("Move Candy", :class => 'btn btn-sm btn-primary') %>
         <% end %>
       </td>
       <td>
@@ -64,7 +64,7 @@
         <td>
           <%= form_for(candy, :url => candy_path(candy, :shop_id => @shop.id)) do |f| %>
             <%= f.select :shelf_id, @shelf_id_nums, :selected => "" %>
-            <%= f.submit("Move Candy", :class => 'text-primary') %>
+            <%= f.submit("Move Candy", :class => 'btn btn-sm btn-primary') %>
           <% end %>
         </td>
         <td>
