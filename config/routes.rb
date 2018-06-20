@@ -2,6 +2,9 @@ Rails.application.routes.draw do
 
   devise_for :users
 
+  # GET for about.html.erb in public controller
+  get 'public/about'
+
   # root route if user is authenticated
   devise_scope :user do
     authenticated :user do

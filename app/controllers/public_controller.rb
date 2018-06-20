@@ -6,4 +6,7 @@ class PublicController < ApplicationController
     # Landing page
   end
 
+  def about
+    # About page
+  end
 end
