@@ -7,4 +7,6 @@ class Shop < ApplicationRecord
   validates :name, presence: true
   validates :city, presence: true
 
+  scope :sorted, lambda { order("name ASC") }
+
 end

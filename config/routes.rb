@@ -2,13 +2,16 @@ Rails.application.routes.draw do
 
   devise_for :users
 
+  # root route if user is authenticated
   devise_scope :user do
     authenticated :user do
       root 'shops#index', as: :authenticated_root
     end
 
+    # root route if user is unauthenticated
     unauthenticated do
-      root 'devise/sessions#new', as: :unauthenticated_root
+      # root 'devise/sessions#new', as: :unauthenticated_root
+      root 'public#index', as: :unauthenticated_root
     end
   end
 
