@@ -16,12 +16,14 @@
   <tr>
     <th>Name</th>
     <th>Amount</th>
+    <th>Price</th>
     <th colspan="3">Options</th>
   </tr>
   <% @shop.candies.unshelved.each do |candy| %>
     <tr>
       <td><%= candy.name %></td>
       <td><%= candy.amount %></td>
+      <td><%= candy.price %></td>
       <td>
         <%= form_for(candy, :url => candy_path(candy, :shop_id => @shop.id)) do |f| %>
           <%= f.select :shelf_id, @shelf_id_nums, :selected => "" %>
@@ -52,12 +54,14 @@
     <tr>
       <th>Name</th>
       <th>Amount</th>
+      <th>Price</th>
       <th colspan="3">Options</th>
     </tr>
     <% shelf.candies.each do |candy| %>
       <tr>
         <td><%= candy.name %></td>
         <td><%= candy.amount %></td>
+        <td><%= candy.price %></td>
         <td>
           <%= form_for(candy, :url => candy_path(candy, :shop_id => @shop.id)) do |f| %>
             <%= f.select :shelf_id, @shelf_id_nums, :selected => "" %>

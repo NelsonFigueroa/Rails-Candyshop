@@ -11,6 +11,7 @@ Generate new candy in shop: <%= @shop.name %> <br>
     <div class="form-group">
       Name: <%= f.text_field(:name, :class => 'form-control') %>
       Amount: <%= f.text_field(:amount, :class => 'form-control') %>
+      Price: <%= f.text_field(:price, :class => 'form-control') %>
     </div>
     <%= f.submit("Generate", :class => 'btn btn-primary') %>
   </div>

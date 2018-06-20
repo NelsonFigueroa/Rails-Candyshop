@@ -79,7 +79,7 @@ class CandiesController < ApplicationController
 
   # Used when creating new candies or moving candies
   def candy_params
-    params.require(:candy).permit(:name, :amount, :shop_id, :shelf_id)
+    params.require(:candy).permit(:name, :amount, :shop_id, :shelf_id, :price)
   end
 
   # Used to maintain appropriate shop_id throughout views
