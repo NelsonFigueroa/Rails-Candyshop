@@ -1,19 +1,14 @@
 <div class="container-fluid px-0">
 
   <!-- Navbar -->
-  <nav class="navbar navbar-light bg-light">
-    <form class="form-inline justify-content-end">
-      <%= link_to("Customer Login", new_user_session_path, :class => 'btn btn-outline-primary mx-2') %>
-      <%= link_to("Vendor Login", new_user_session_path, :class => 'btn btn-outline-primary mx-2') %>
-    </form>
-  </nav>
+  <%= render partial: "navbar" %>
 
   <!-- Jumbotron -->
   <div class="jumbotron jumbotron-fluid">
     <div class="container my-5">
-      <h1 class="display-4">The Marketplace</h1>
+      <h1 class="display-4">Jumbotron</h1>
       <p class="lead">
-        Purchase or sell goods
+        Purchase or sell candy!
       </p>
       <hr class="my-4">
       <%= link_to("See how it works", public_about_path, :class => 'btn btn-primary btn-lg') %>

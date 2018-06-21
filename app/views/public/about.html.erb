@@ -1,17 +1,49 @@
 <div class="container-fluid px-0">
 
   <!-- Navbar -->
-  <nav class="navbar navbar-light bg-light">
-    <form class="form-inline justify-content-end">
-      <%= link_to("Customer Login", new_user_session_path, :class => 'btn btn-outline-primary mx-2') %>
-      <%= link_to("Vendor Login", new_user_session_path, :class => 'btn btn-outline-primary mx-2') %>
-    </form>
-  </nav>
+  <%= render partial: "navbar" %>
 
-Details about how it works?
+  <!-- Jumbotron -->
+  <div class="jumbotron jumbotron-fluid">
+    <div class="container my-3">
+      <h1 class="display-4">For Vendors</h1>
+      <hr>
 
-For vendors:
+      <!-- Card inside jumbotron -->
+      <div class="d-flex justify-content-start">
+        <div class="card" style="width: 18rem;">
+          <div class="card-header">
+            For Vendors
+          </div>
+          <div class="card-body">
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          </div>
+        </div>
+      </div>
 
+    </div>
+  </div>
 
-For Customers:
+  <!-- Jumbotron -->
+  <div class="jumbotron jumbotron-fluid">
+    <div class="container my-3">
+      <h1 class="display-4  d-flex justify-content-end">For Customers</h1>
+      <hr>
+
+      <!-- Card inside jumbotron -->
+      <div class="d-flex justify-content-end">
+        <div class="card" style="width: 18rem;">
+          <div class="card-header">
+            Featured
+          </div>
+          <div class="card-body">
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+idk
 </div>
