@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Welcome!</title>
+    <title><%= @title %></title>
+
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -9,8 +10,22 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
-    <%= yield %>
-  </body>
+  <div class="">
+    <body>
+        <div class="row">
+          <div class="col-md-6 offset-md-3">
+            <% unless notice.blank? && alert.blank? %>
+              <div class="alert alert-dark center-block text-center">
+                <%= image_tag "ultrafastparrot.gif", :size => '30x30', :class => 'img-fluid' %>
+                <%= notice %>
+                <%= alert %>
+                <%= image_tag "ultrafastparrot.gif", :size => '30x30', :class => 'img-fluid' %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+        <%= yield %>
+    </body>
+  </div>
 
 </html>

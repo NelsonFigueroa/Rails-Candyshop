@@ -4,9 +4,11 @@ class PublicController < ApplicationController
 
   def index
     # Landing page
+    @title = "Home"
   end
 
   def about
     # About page
+    @title = "About"
   end
 end
