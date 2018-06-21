@@ -1,6 +1,11 @@
 <nav class="navbar navbar-light bg-light">
   <form class="form-inline">
+    <%= link_to("Home", unauthenticated_root_path, :class => 'btn btn-outline-primary mx-2') %>
+    |
     <%= link_to("Customer Login", new_user_session_path, :class => 'btn btn-outline-primary mx-2') %>
+    <%= link_to("Customer Signup", new_user_session_path, :class => 'btn btn-outline-primary mx-2') %>
+    |
     <%= link_to("Vendor Login", new_user_session_path, :class => 'btn btn-outline-primary mx-2') %>
+    <%= link_to("Vendor Signup", new_user_registration_path, :class => 'btn btn-outline-primary mx-2') %>
   </form>
 </nav>

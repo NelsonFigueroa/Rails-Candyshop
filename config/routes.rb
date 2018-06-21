@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   # GET for about.html.erb in public controller
   get 'public/about'
 
+  ### Will need to add different root if customer is authenticated
+
   # root route if user is authenticated
   devise_scope :user do
     authenticated :user do
