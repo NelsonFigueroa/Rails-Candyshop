@@ -3,7 +3,7 @@ class ShopsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @shops = current_user.shops
+    @shops = current_user.shops.sorted
   end
 
   def show
