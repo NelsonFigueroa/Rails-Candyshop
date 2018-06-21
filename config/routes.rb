@@ -1,22 +1,35 @@
 Rails.application.routes.draw do
 
+  devise_for :customers
   devise_for :users
 
   # GET for about.html.erb in public controller
   get 'public/about'
 
-  ### Will need to add different root if customer is authenticated
+  # GET for customer view
+  get 'customer/index'
 
-  # root route if user is authenticated
+  devise_scope :customer do
+    # root route if customer is authenticated
+    authenticated :customer do
+      root 'customer#index', as: :authenticated_customer
+    end
+
+    # root route if customer is unauthenticated
+    # unauthenticated do
+    #   root 'public#index', as: :unauthenticated_customer
+    # end
+  end
+
   devise_scope :user do
+    # root route if user is authenticated
     authenticated :user do
-      root 'shops#index', as: :authenticated_root
+      root 'shops#index', as: :authenticated_user
     end
 
     # root route if user is unauthenticated
     unauthenticated do
-      # root 'devise/sessions#new', as: :unauthenticated_root
-      root 'public#index', as: :unauthenticated_root
+      root 'public#index', as: :unauthenticated_user
     end
   end
 

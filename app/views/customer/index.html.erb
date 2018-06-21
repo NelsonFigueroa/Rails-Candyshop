@@ -1,0 +1,9 @@
+<!-- Navbar -->
+<%= render partial: "navbar" %>
+
+<% @shops.each do |shop| %>
+  <%= shop.name %> <br>
+  <% shop.candies.each do |candy| %>
+  <%= candy.name %> : <%= candy.price %>
+  <% end %>
+<% end %>
