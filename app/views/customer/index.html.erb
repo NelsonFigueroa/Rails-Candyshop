@@ -1,9 +1,22 @@
 <!-- Navbar -->
 <%= render partial: "navbar" %>
+<br>
 
+<div class="card-deck">
 <% @shops.each do |shop| %>
-  <%= shop.name %> <br>
-  <% shop.candies.each do |candy| %>
-  <%= candy.name %> : <%= candy.price %>
-  <% end %>
+
+<div class="">
+  <div class="card mb-3">
+    <div class="card-header">
+      <h5><%= shop.name %></h5>
+    </div>
+    <div class="card-body">
+      <small class="card-text">Candy varieties: <%= shop.candies.count %> </small> <br>
+      <hr>
+      <%= link_to("Show Details", shop_path(shop), :class => 'btn btn-primary btn-sm') %>
+    </div>
+  </div>
+</div>
+
 <% end %>
+</div>
