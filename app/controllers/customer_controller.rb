@@ -6,7 +6,7 @@ class CustomerController < ApplicationController
 
   def index
     # Main page for customers
-    @shops = Shop.all.sorted
+    @candies = Candy.all
     @customer = current_customer
   end
 
