@@ -15,7 +15,6 @@ class ShopsController < ApplicationController
 
     # Gathering all existing shelves to display in drop-down
     @shelf_id_nums = []
-    @shelf_id_nums << ''
     @shop.shelves.each do |shelf|
       @shelf_id_nums << shelf.id.to_s
     end
