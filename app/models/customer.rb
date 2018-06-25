@@ -5,4 +5,6 @@ class Customer < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 
   validates :email, uniqueness: true
+  validates :first_name, presence: true
+  validates :last_name, presence: true
 end
