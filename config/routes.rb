@@ -6,19 +6,11 @@ Rails.application.routes.draw do
   # GET for about.html.erb in public controller
   get 'public/about'
 
-  # GET for customer view
-  get 'customer/index'
-
   devise_scope :customer do
     # root route if customer is authenticated
     authenticated :customer do
       root 'customer#index', as: :authenticated_customer
     end
-
-    # root route if customer is unauthenticated
-    # unauthenticated do
-    #   root 'public#index', as: :unauthenticated_customer
-    # end
   end
 
   devise_scope :user do
@@ -46,6 +38,13 @@ Rails.application.routes.draw do
   end
 
   resources :shelves, :except => [:index, :show, :new, :edit, :update] do
+    member do
+      get :delete
+    end
+  end
+
+  # For customers
+  resources :customer, :except => [:new, :create] do
     member do
       get :delete
     end

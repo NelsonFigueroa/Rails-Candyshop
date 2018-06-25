@@ -14,11 +14,12 @@
     <body>
         <div class="row">
           <div class="col-md-6 offset-md-3">
-            <% unless notice.blank? && alert.blank? %>
+            <% unless notice.blank? && alert.blank? && flash.blank? %>
               <div class="alert alert-dark center-block text-center">
                 <%= image_tag "ultrafastparrot.gif", :size => '30x30', :class => 'img-fluid' %>
                 <%= notice %>
                 <%= alert %>
+                <%= flash[:message] %>
                 <%= image_tag "ultrafastparrot.gif", :size => '30x30', :class => 'img-fluid' %>
               </div>
             <% end %>

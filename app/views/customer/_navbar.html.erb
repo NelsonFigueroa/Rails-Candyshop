@@ -1,9 +1,8 @@
 <nav class="navbar navbar-light bg-light">
-  <!-- <div class="navbar-nav"> -->
     <form class="form-inline">
       <%= link_to("Log Out", destroy_customer_session_path, method: :delete, :class => 'btn btn-dark') %>
       <span class="navbar-text text-primary mx-3"><%= @customer.first_name %> <%= @customer.last_name %></span>
       <span class="navbar-text text-success mx-3"> Balance: $<%= @customer.money %></span>
+      <%= link_to("Add Money", edit_customer_path(@customer), :class => 'btn btn-sm btn-success') %>
     </form>
-  <!-- </div> -->
 </nav>
