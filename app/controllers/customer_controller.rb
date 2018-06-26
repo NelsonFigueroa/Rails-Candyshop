@@ -11,7 +11,9 @@ class CustomerController < ApplicationController
   end
 
   def show
-    # Show candy info
+    # Show candy info, add to cart
+    @customer = current_customer
+    @candy = Candy.find(params[:candy_id])
   end
 
   def edit

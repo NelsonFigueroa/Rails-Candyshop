@@ -10,8 +10,8 @@
     <div class="card-body justify content center">
       <div class="form-group">
         <%= form_for(@customer) do |f| %>
-        Amount: <%= f.number_field(:money, :step => 0.01, :class => 'form-control') %>
-        <small class="text-secondary">Total balance cannot exceed $1000</small>
+        Amount: <%= f.number_field(:money, :value => nil, :step => 0.01, :class => 'form-control') %>
+        <small class="form-text text-muted">Amount will be added to current balance.</small>
         <br>
         <%= f.submit("Add Money", :class => 'btn btn-success') %>
         <% end %>

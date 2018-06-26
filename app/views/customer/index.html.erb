@@ -15,7 +15,7 @@
     </thead>
     <% @candies.each do |candy| %>
       <tr>
-        <td><%= link_to(candy.name, :class => 'btn btn-primary') %></td>
+        <td><%= link_to(candy.name, customer_path(@customer, :candy_id => candy.id), :class => 'text-primary') %></td>
         <td><%= candy.amount %></td>
         <td><%= candy.price %></td>
         <td><%= candy.shop.name %></td>
