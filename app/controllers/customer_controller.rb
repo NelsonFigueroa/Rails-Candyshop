@@ -16,6 +16,11 @@ class CustomerController < ApplicationController
     @candy = Candy.find(params[:candy_id])
   end
 
+  def show_cart
+    # Show cart contents (cookies)
+    # Access key and value
+  end
+
   def edit
     @customer = current_customer
   end
@@ -35,10 +40,20 @@ class CustomerController < ApplicationController
     # end
   end
 
+  def update_cart
+    # Update cart contents (cookies)
+    candy_id = params[:candy_id].to_s
+    amount = params[:customer][:amount].to_s
+    # cookies[:candies] = { candy_id => amount }
+    cookies[candy_id] = amount
+    flash[:message] = "Candy added to cart!"
+    redirect_to(authenticated_customer_path)
+  end
+
   private
 
   def customer_params
-    params.require(:customer).permit(:money)
+    params.require(:customer).permit(:money, :candy_id, :amount)
   end
 
 end

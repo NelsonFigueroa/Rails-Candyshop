@@ -6,6 +6,12 @@ Rails.application.routes.draw do
   # GET for about.html.erb in public controller
   get 'public/about'
 
+  # GET for customer cart
+  get 'customer/show_cart'
+
+  # PATCH for updating customer cart
+  patch 'customer/update_cart' #Is this even needed ?
+
   devise_scope :customer do
     # root route if customer is authenticated
     authenticated :customer do
