@@ -28,6 +28,10 @@ class CustomerController < ApplicationController
 
   def update
     @customer = current_customer
+    # Add money here manually then throw it in update params
+    # @sum = @customer.money + params[:customer][:money].to_f
+    # Figure out how to include it in customer params
+    # Maybe params[:customer][:money] = @sum
     @customer.update!(money: @customer.money + params[:customer][:money].to_f)
     redirect_to(authenticated_customer_path)
 
@@ -42,6 +46,20 @@ class CustomerController < ApplicationController
   end
 
   def update_cart
+    # Update cart contents
+    @customer = current_customer
+    # Cart table?
+    # Cart would need to be created in the beginning ... before action?
+    # If current_customer.cart = nil, create.
+    #
+    # @cart = @customer.cart
+    # @cart.candy_id = params[:candy_id]
+    # @cart.amount =
+
+    # Scope for candies where they all have the same cart?
+    # Customer One-to-one Cart
+    # Candy Many-to-Many cart...that requires more columns though
+
     # Update cart contents (cookies)
     candy_id = params[:candy_id].to_s
     amount = params[:customer][:amount].to_s

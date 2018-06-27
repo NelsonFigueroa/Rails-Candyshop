@@ -3,46 +3,39 @@
 <br>
 
 <div class="container">
-<!-- If cookies.count == 1, don't do any of this, generate a message saying cart empty -->
-<% if cookies.count == 1 %>
+  <!-- If cookies.count == 1, don't do any of this, generate a message saying cart empty -->
+  <% if cookies.count == 1 %>
 
-  <h1>Cart empty.</h1>
-  <p>Click on candies in the home page and add them to your cart!</p>
+    <h1>Cart empty.</h1>
+    <p>Click on candies in the home page and add them to your cart!</p>
 
-<% else %>
+  <% else %>
 
-<h1>Cart</h1>
-<table class="table table-sm table-bordered table-hover">
-  <thead class="thead-dark">
-    <tr>
-      <th>Candy</th>
-      <th>Amount</th>
-      <th>Store</th>
-      <th>Total Cost</th>
-    </tr>
-  </thead>
-  <% x = 1 %>
-  <% while x < cookies.count do %>
+  <h1>Cart</h1>
+  <table class="table table-sm table-bordered table-hover">
+    <thead class="thead-dark">
+      <tr>
+        <th>Candy</th>
+        <th>Amount</th>
+        <th>Store</th>
+        <th>Total Cost</th>
+      </tr>
+    </thead>
+
     <% cookies.each do |candy_id, amount| %>
       <% unless candy_id == '_candyshop_session' # This gets generated and stored in the cookie by rails, exclude%>
+        <% @candy = Candy.find(candy_id) %>
         <tr>
-          <td><%= Candy.find(candy_id).name %></td>
+          <td><%= @candy.name %></td>
           <td><%= amount %></td>
-          <td><%= Candy.find(candy_id).shop.name %></td>
-          <td><%= amount.to_i * Candy.find(candy_id).price %></td>
+          <td><%= @candy.shop.name %></td>
+          <td><%= amount.to_i * @candy.price %> @ <%= @candy.price %> each</td>
         </tr>
-        <% x = x + 1 %>
       <% end %>
     <% end %>
+
+  </table>
+
   <% end %>
-</table>
-
-<% end %>
-
-
-
-
-
-
 
 </div>
