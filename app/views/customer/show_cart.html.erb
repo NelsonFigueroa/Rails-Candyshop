@@ -3,38 +3,40 @@
 <br>
 
 <div class="container">
-  <!-- If cookies.count == 1, don't do any of this, generate a message saying cart empty -->
-  <% if cookies.count == 1 %>
+  <h1>Cart</h1>
+  <!-- If count is 3, cart is empty, 3 default variables are in session[] -->
+  <% if session.keys.count == 3 %>
 
-    <h1>Cart empty.</h1>
-    <p>Click on candies in the home page and add them to your cart!</p>
+    <hr>
+    <h3>Your cart is empty!</h3>
+    <p>Add candies to your cart by clicking on them in the home page. Then come back here :) </p>
 
   <% else %>
 
-  <h1>Cart</h1>
-  <table class="table table-sm table-bordered table-hover">
-    <thead class="thead-dark">
-      <tr>
-        <th>Candy</th>
-        <th>Amount</th>
-        <th>Store</th>
-        <th>Total Cost</th>
-      </tr>
-    </thead>
-
-    <% cookies.each do |candy_id, amount| %>
-      <% unless candy_id == '_candyshop_session' # This gets generated and stored in the cookie by rails, exclude%>
-        <% @candy = Candy.find(candy_id) %>
+    <table class="table table-sm table-bordered table-hover">
+      <thead class="thead-dark">
         <tr>
-          <td><%= @candy.name %></td>
-          <td><%= amount %></td>
-          <td><%= @candy.shop.name %></td>
-          <td><%= amount.to_i * @candy.price %> @ <%= @candy.price %> each</td>
+          <th>Candy</th>
+          <th>Amount</th>
+          <th>Store</th>
+          <th>Total Cost</th>
         </tr>
-      <% end %>
-    <% end %>
+      </thead>
 
-  </table>
+      <% session.each do |candy_id, amount| %>
+        <%  # These strings are generated and stored in the session by rails, exclude %>
+        <% unless candy_id == 'session_id' || candy_id == 'warden.user.customer.key' || candy_id == '_csrf_token' %>
+          <% @candy = Candy.find(candy_id) %>
+          <tr>
+            <td><%= @candy.name %></td>
+            <td><%= amount %></td>
+            <td><%= @candy.shop.name %></td>
+            <td><%= amount.to_i * @candy.price %> @ <%= @candy.price %> each</td>
+          </tr>
+        <% end %>
+      <% end %>
+
+    </table>
 
   <% end %>
 

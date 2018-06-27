@@ -5,6 +5,14 @@
       <span class="navbar-text text-dark mx-3"><%= @customer.first_name %> <%= @customer.last_name %></span>
       <span class="navbar-text text-success mx-3"> Balance: $<%= @customer.money %></span>
       <%= link_to("Add Money", edit_customer_path(@customer), :class => 'btn btn-sm btn-success mx-2') %>
-      <%= link_to("View Cart", customer_show_cart_path(@customer), :class => 'btn btn-sm btn-info mx-2') %>
+
+      <% # Flash message gets added to session[], so check is needed to keep cart count accurate %>
+      <% if session.keys.count > 3 && flash[:message].blank? %>
+        <%= link_to("View Cart (#{session.keys.count - 3})", customer_show_cart_path(@customer), :class => 'btn btn-sm btn-info mx-2') %>
+      <% elsif session.keys.count > 3 && !flash[:message].blank? %>
+        <%= link_to("View Cart (#{session.keys.count - 4})", customer_show_cart_path(@customer), :class => 'btn btn-sm btn-info mx-2') %>
+      <% else %>
+        <%= link_to("View Cart", customer_show_cart_path(@customer), :class => 'btn btn-sm btn-info mx-2') %>
+      <% end %>
     </form>
 </nav>
