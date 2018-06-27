@@ -1,13 +1,48 @@
-Working!
+<!-- Navbar -->
+<%= render partial: "navbar" %>
 <br>
-<%= cookies.count %>
-<br>
-<% x = 1 %>
-<% while x < cookies.count do %>
 
-  <% cookies.each do |key, value| %>
-    <%= key %>: <%= value %>
-    <br>
-    <% x = x + 1 %>
+<div class="container">
+<!-- If cookies.count == 1, don't do any of this, generate a message saying cart empty -->
+<% if cookies.count == 1 %>
+
+  <h1>Cart empty.</h1>
+  <p>Click on candies in the home page and add them to your cart!</p>
+
+<% else %>
+
+<h1>Cart</h1>
+<table class="table table-sm table-bordered table-hover">
+  <thead class="thead-dark">
+    <tr>
+      <th>Candy</th>
+      <th>Amount</th>
+      <th>Store</th>
+      <th>Total Cost</th>
+    </tr>
+  </thead>
+  <% x = 1 %>
+  <% while x < cookies.count do %>
+    <% cookies.each do |candy_id, amount| %>
+      <% unless candy_id == '_candyshop_session' # This gets generated and stored in the cookie by rails, exclude%>
+        <tr>
+          <td><%= Candy.find(candy_id).name %></td>
+          <td><%= amount %></td>
+          <td><%= Candy.find(candy_id).shop.name %></td>
+          <td><%= amount.to_i * Candy.find(candy_id).price %></td>
+        </tr>
+        <% x = x + 1 %>
+      <% end %>
+    <% end %>
   <% end %>
-<%end%>
+</table>
+
+<% end %>
+
+
+
+
+
+
+
+</div>

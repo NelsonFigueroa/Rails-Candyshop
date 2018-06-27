@@ -19,6 +19,7 @@ class CustomerController < ApplicationController
   def show_cart
     # Show cart contents (cookies)
     # Access key and value
+    @customer = current_customer
   end
 
   def edit
