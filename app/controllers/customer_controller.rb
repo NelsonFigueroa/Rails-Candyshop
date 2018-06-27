@@ -20,6 +20,7 @@ class CustomerController < ApplicationController
     # Show cart contents (cookies)
     # Access key and value
     @customer = current_customer
+    @grand_total = 0
   end
 
   def edit
@@ -28,23 +29,18 @@ class CustomerController < ApplicationController
 
   def update
     @customer = current_customer
-    # Add money here manually then throw it in update params
-    # @sum = @customer.money + params[:customer][:money].to_f
-    # Figure out how to include it in customer params
-    # Maybe params[:customer][:money] = @sum
-    @customer.update!(money: @customer.money + params[:customer][:money].to_f)
-    flash[:message] = "Money added!"
-    redirect_to(authenticated_customer_path)
+    # Add money manually then include it in update params
+    @sum = @customer.money + params[:customer][:money].to_f
+    params[:customer][:money] = @sum
 
-
-    # if @customer.update_attributes(customer_params)
-    #   flash[:message] = "Money added!"
-    #   redirect_to(authenticated_customer_path)
-    # else
-    #   # If unable to save, render edit
-    #   flash[:message] = "Invalid input!"
-    #   render('edit')
-    # end
+    if @customer.update_attributes(customer_params)
+      flash[:message] = "Money added!"
+      redirect_to(authenticated_customer_path)
+    else
+      # If unable to save, render edit
+      flash[:message] = "Invalid input!"
+      render('edit')
+    end
   end
 
   def update_cart

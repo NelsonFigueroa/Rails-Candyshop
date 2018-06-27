@@ -17,8 +17,8 @@
       <thead class="thead-dark">
         <tr>
           <th>Candy</th>
+          <th>Ships From</th>
           <th>Amount</th>
-          <th>Store</th>
           <th>Total Cost</th>
         </tr>
       </thead>
@@ -29,14 +29,25 @@
           <% @candy = Candy.find(candy_id) %>
           <tr>
             <td><%= @candy.name %></td>
-            <td><%= amount %></td>
             <td><%= @candy.shop.name %></td>
-            <td><%= amount.to_i * @candy.price %> @ <%= @candy.price %> each</td>
+            <td><%= amount %></td>
+            <td><%= amount.to_i * @candy.price %> ($<%= @candy.price %> each)</td>
+            <% @grand_total = @grand_total + (amount.to_i * @candy.price) %>
           </tr>
         <% end %>
       <% end %>
 
     </table>
+
+    <br>
+
+    <div class="card">
+      <div class="card-body">
+        <h3 class="card-title">Grand Total: $<%= @grand_total %></h3>
+        <hr>
+        <a href="#" class="btn btn-success">Place Order</a>
+      </div>
+    </div>
 
   <% end %>
 
