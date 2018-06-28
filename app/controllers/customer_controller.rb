@@ -63,6 +63,11 @@ class CustomerController < ApplicationController
     redirect_to(authenticated_customer_path)
   end
 
+  def remove_from_cart
+    session.delete(params[:candy_id])
+    redirect_to(customer_show_cart_path)
+  end
+
   private
 
   def customer_params

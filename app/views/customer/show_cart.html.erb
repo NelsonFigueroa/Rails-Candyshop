@@ -20,6 +20,7 @@
           <th>Ships From</th>
           <th>Amount</th>
           <th>Total Cost</th>
+          <th>Options</th>
         </tr>
       </thead>
 
@@ -33,6 +34,7 @@
             <td><%= amount %></td>
             <td><%= amount.to_i * @candy.price %> ($<%= @candy.price %> each)</td>
             <% @grand_total += (amount.to_i * @candy.price) %>
+            <td><%= link_to("Remove", customer_remove_from_cart_path(:candy_id => candy_id), :class => 'text-danger') %></td>
           </tr>
         <% end %>
       <% end %>
