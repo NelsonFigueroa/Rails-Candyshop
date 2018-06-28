@@ -4,6 +4,7 @@
 
 <div class="container">
   <h1>Candies</h1>
+  <p class="text-info">Blue = in cart</p>
   <table class="table table-sm table-bordered table-hover">
     <thead class="thead-dark">
       <tr>
@@ -14,12 +15,17 @@
       </tr>
     </thead>
     <% @candies.each do |candy| %>
+      <% if session.key?(candy.id) %>
+      <tr class="alert-info">
+        <td><%= link_to(candy.name, customer_path(@customer, :candy_id => candy.id), :class => 'text-dark') %></td>
+      <% else %>
       <tr>
-        <td><%= link_to(candy.name, customer_path(@customer, :candy_id => candy.id), :class => 'text-primary') %></td>
-        <td><%= candy.amount %></td>
-        <td><%= candy.price %></td>
-        <td><%= candy.shop.name %></td>
-      </tr>
+        <td><%= link_to(candy.name, customer_path(@customer, :candy_id => candy.id)) %></td>
+      <% end %>
+      <td><%= candy.amount %></td>
+      <td><%= candy.price %></td>
+      <td><%= candy.shop.name %></td>
+    </tr>
     <% end %>
   </table>
 </div>

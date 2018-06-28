@@ -32,7 +32,7 @@
             <td><%= @candy.shop.name %></td>
             <td><%= amount %></td>
             <td><%= amount.to_i * @candy.price %> ($<%= @candy.price %> each)</td>
-            <% @grand_total = @grand_total + (amount.to_i * @candy.price) %>
+            <% @grand_total += (amount.to_i * @candy.price) %>
           </tr>
         <% end %>
       <% end %>

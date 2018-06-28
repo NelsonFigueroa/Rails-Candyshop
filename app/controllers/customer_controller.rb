@@ -29,6 +29,14 @@ class CustomerController < ApplicationController
 
   def update
     @customer = current_customer
+
+    # Do not allow user to enter negative money value
+    if params[:customer][:money].to_f < 0
+      flash[:message] = "Enter a positive value."
+      redirect_to(edit_customer_path)
+      return
+    end
+
     # Add money manually then include it in update params
     @sum = @customer.money + params[:customer][:money].to_f
     params[:customer][:money] = @sum
@@ -36,15 +44,16 @@ class CustomerController < ApplicationController
     if @customer.update_attributes(customer_params)
       flash[:message] = "Money added!"
       redirect_to(authenticated_customer_path)
+      return
     else
       # If unable to save, render edit
       flash[:message] = "Invalid input!"
-      render('edit')
+      redirect_to(edit_customer_path)
     end
   end
 
   def update_cart
-    # Update cart contents
+    # Update cart contents by adding candy_id and amount to session[]
     @customer = current_customer
 
     candy_id = params[:candy_id].to_s
