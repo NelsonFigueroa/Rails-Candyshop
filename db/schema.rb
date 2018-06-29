@@ -46,10 +46,12 @@ ActiveRecord::Schema.define(version: 2018_06_29_181027) do
 
   create_table "orders", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "customer_id"
+    t.string "user_id"
     t.string "store_id"
     t.string "candy_name"
     t.decimal "candy_price", precision: 10, scale: 2
     t.integer "amount"
+    t.decimal "total", precision: 10, scale: 2
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

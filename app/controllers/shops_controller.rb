@@ -4,6 +4,10 @@ class ShopsController < ApplicationController
 
   def index
     @shops = current_user.shops.sorted
+
+    # Orders for current user
+    @orders = Order.where(:user_id => current_user.id)
+    @revenue = Order.where(:user_id => current_user.id).sum(:total)
   end
 
   def show

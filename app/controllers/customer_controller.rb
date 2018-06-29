@@ -113,10 +113,12 @@ class CustomerController < ApplicationController
         @candy = Candy.find(candy_id)
 
         @order = Order.new(:customer_id => @customer.id,
+                          :user_id => @candy.shop.user_id,
                           :store_id => @candy.shop_id,
                           :candy_name => @candy.name,
                           :candy_price => @candy.price,
-                          :amount => amount.to_i)
+                          :amount => amount.to_i,
+                          :total => (@candy.price * amount.to_i))
         @order.save
 
         # If candy amount will be 0 after transaction...

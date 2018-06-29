@@ -5,25 +5,28 @@
 <%= link_to("Log Out", destroy_user_session_path, method: :delete, :class => 'btn btn-dark') %>
 
 <br><br>
+<h4>Total Orders: <%= @orders.count %></h4> <br>
+<h4>Total Revenue: $<%= @revenue %></h4> <br>
 
 <div class="card-deck">
-<% @shops.each do |shop| %>
+  <% @shops.each do |shop| %>
 
-<div class=""> <!-- Need empty div so they align properly in all screen sizes, idk why it works -->
-  <div class="card mb-3">
-    <div class="card-header">
-      <h5><%= shop.name %></h5><small class="text-secondary">Shop ID: <%= shop.id %></small>
-    </div>
-    <div class="card-body">
-      <small class="card-text">Monthly Sales: </small> <br>
-      <small class="card-text">Yearly Sales: </small> <br>
-      <small class="card-text">Total Sales: </small> <br>
-      <hr>
-      <%= link_to("Show Details", shop_path(shop), :class => 'btn btn-primary btn-sm') %>
-      <%= link_to("Delete", delete_shop_path(shop), :class => 'btn btn-danger btn-sm') %>
-    </div>
-  </div>
-</div>
+    <% @shop_sales = Order.where(:store_id => shop.id).sum(:total) %>
 
-<% end %>
+    <div class=""> <!-- Need empty div so they align properly in all screen sizes, idk why it works -->
+      <div class="card mb-3">
+        <div class="card-header">
+          <h5><%= shop.name %></h5><small class="text-secondary">Shop ID: <%= shop.id %></small>
+        </div>
+        <div class="card-body">
+          <small class="card-text">Candy Varieties: <%= shop.candies.count %> </small> <br>
+          <small class="card-text">Total Sales: $<%= @shop_sales %></small> <br>
+          <hr>
+          <%= link_to("Show Details", shop_path(shop), :class => 'btn btn-primary btn-sm') %>
+          <%= link_to("Delete", delete_shop_path(shop), :class => 'btn btn-danger btn-sm') %>
+        </div>
+      </div>
+    </div>
+
+  <% end %>
 </div>
