@@ -55,12 +55,20 @@ class CustomerController < ApplicationController
   # Allows customer to add candies to cart
   def update_cart
     @customer = current_customer
+
+    # Make sure candy amount is not negative
+    if params[:customer][:amount].to_i < 0
+      flash[:message] = "Enter a positive amount."
+      redirect_to(authenticated_customer_path)
+      return
+    else
     # Update cart contents by adding candy_id and amount to session[]
     candy_id = params[:candy_id].to_s
     amount = params[:customer][:amount].to_s
     session[candy_id] = amount
     flash[:message] = "Candy added to cart!"
     redirect_to(authenticated_customer_path)
+    end
   end
 
   # Allows customer to remove candies from cart
