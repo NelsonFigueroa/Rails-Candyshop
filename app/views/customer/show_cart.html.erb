@@ -47,7 +47,7 @@
       <div class="card-body">
         <h3 class="card-title">Grand Total: $<%= @grand_total %></h3>
         <hr>
-        <a href="#" class="btn btn-success">Place Order</a>
+        <%= link_to("Place Order", customer_place_order_path(:grand_total => @grand_total), :class => 'btn btn-success') %>
       </div>
     </div>
 

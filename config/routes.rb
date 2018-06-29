@@ -10,10 +10,13 @@ Rails.application.routes.draw do
   get 'customer/show_cart'
 
   # PATCH for updating customer cart
-  patch 'customer/update_cart' #Is this even needed ?
+  patch 'customer/update_cart'
 
   # To remove items from cart
   get 'customer/remove_from_cart'
+
+  # To place order
+  get 'customer/place_order'
 
   devise_scope :customer do
     # root route if customer is authenticated

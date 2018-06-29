@@ -4,21 +4,20 @@ class CustomerController < ApplicationController
 
   layout "public"
 
+  # Main page for customers
   def index
-    # Main page for customers
     @candies = Candy.all
     @customer = current_customer
   end
 
+  # Show candy info, add to cart
   def show
-    # Show candy info, add to cart
     @customer = current_customer
     @candy = Candy.find(params[:candy_id])
   end
 
+  # Show cart contents
   def show_cart
-    # Show cart contents (cookies)
-    # Access key and value
     @customer = current_customer
     @grand_total = 0
   end
@@ -27,6 +26,7 @@ class CustomerController < ApplicationController
     @customer = current_customer
   end
 
+  # Allows customer to add money
   def update
     @customer = current_customer
 
@@ -52,10 +52,10 @@ class CustomerController < ApplicationController
     end
   end
 
+  # Allows customer to add candies to cart
   def update_cart
-    # Update cart contents by adding candy_id and amount to session[]
     @customer = current_customer
-
+    # Update cart contents by adding candy_id and amount to session[]
     candy_id = params[:candy_id].to_s
     amount = params[:customer][:amount].to_s
     session[candy_id] = amount
@@ -63,9 +63,65 @@ class CustomerController < ApplicationController
     redirect_to(authenticated_customer_path)
   end
 
+  # Allows customer to remove candies from cart
   def remove_from_cart
+    # Candy ID to be deleted gets passed in, delete it from sessions and redirect
     session.delete(params[:candy_id])
     redirect_to(customer_show_cart_path)
+  end
+
+  # Allows customer to place and process and order
+  def place_order
+    @customer = current_customer
+    @grand_total = params[:grand_total].to_f
+
+    # Check that customer has enough balance for total order
+    if @customer.money < @grand_total
+      flash[:message] = "You are too poor."
+      redirect_to(authenticated_customer_path)
+      return
+    end
+
+    # Check that amount to buy is less than or equal to current inventory
+    session.each do |candy_id, amount|
+      unless candy_id == 'session_id' || candy_id == 'warden.user.customer.key' || candy_id == '_csrf_token'
+        if Candy.find(candy_id).amount < amount.to_i
+          flash[:message] = "You are attempting to buy more candy than is available"
+          redirect_to(authenticated_customer_path)
+          return
+        end
+      end
+    end
+
+    # Checks passed, continue processing order
+
+    # Subtract from balance
+    @customer.money = @customer.money - @grand_total
+    @customer.save
+
+    session.each do |candy_id, amount|
+      unless candy_id == 'session_id' || candy_id == 'warden.user.customer.key' || candy_id == '_csrf_token'
+
+        @candy = Candy.find(candy_id)
+        # If candy amount will be 0 after transaction...
+        if @candy.amount == amount.to_i
+          # Destroy candy
+          @candy.destroy
+        else
+          # Subtract from inventory
+          @candy.amount = @candy.amount - amount.to_i
+          @candy.save
+        end
+
+        # Add to order table, just keep track of money instead of specific candy?
+
+        # Clear the candy from the session hash
+        session.delete(candy_id)
+      end
+    end
+
+    flash[:message] = "Order placed, thank you for shopping with us!"
+    redirect_to(authenticated_customer_path)
   end
 
   private
