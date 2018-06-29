@@ -43,7 +43,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :candies, :except => [:index, :show] do
+  resources :candies, :except => [:index, :show, :edit] do
     member do
       get :delete
     end

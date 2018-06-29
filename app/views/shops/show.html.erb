@@ -17,7 +17,7 @@
     <th>Name</th>
     <th>Amount</th>
     <th>Price</th>
-    <th colspan="3">Options</th>
+    <th colspan="2">Options</th>
   </tr>
   <% @shop.candies.unshelved.each do |candy| %>
     <tr>
@@ -30,9 +30,6 @@
           <%= f.select :shelf_id, @shelf_id_nums, :include_blank => 'Unshelf' %>
           <%= f.submit("Move Candy", :class => 'btn btn-sm btn-primary') %>
         <% end %>
-      </td>
-      <td>
-        <%= link_to("Edit", edit_candy_path(candy, :shop_id => @shop.id), :class => '') %>
       </td>
       <td>
         <%= link_to("Delete", delete_candy_path(candy, :shop_id => @shop.id), :class => 'text-danger') %>

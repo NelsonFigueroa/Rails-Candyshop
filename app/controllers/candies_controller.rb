@@ -30,13 +30,8 @@ class CandiesController < ApplicationController
     end
   end
 
-  def edit
-    @candy = Candy.find(params[:id])
-    if !candy_belongs_to_user(@candy)
-      flash[:message] = "This shelf does not exist in your database."
-      redirect_to(shops_path)
-    end
-  end
+  # def edit
+  # end
 
   def update
     @candy = Candy.find(params[:id])

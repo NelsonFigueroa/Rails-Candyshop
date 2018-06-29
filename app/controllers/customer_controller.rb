@@ -112,6 +112,7 @@ class CustomerController < ApplicationController
 
         @candy = Candy.find(candy_id)
 
+        # Add to orders table
         @order = Order.new(:customer_id => @customer.id,
                           :user_id => @candy.shop.user_id,
                           :store_id => @candy.shop_id,
