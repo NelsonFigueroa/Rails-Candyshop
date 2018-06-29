@@ -5,9 +5,15 @@ class ShopsController < ApplicationController
   def index
     @shops = current_user.shops.sorted
 
-    # Orders for current user
-    @orders = Order.where(:user_id => current_user.id)
+    # Count of Orders for current user
+    @orders = Order.where(:user_id => current_user.id).count
+
+    # Total revenue of shops
     @revenue = Order.where(:user_id => current_user.id).sum(:total)
+
+    # For pie chart revenue split
+    @revenue_split = Order.group(:store_id).where(:user_id => current_user.id).sum(:total)
+
   end
 
   def show

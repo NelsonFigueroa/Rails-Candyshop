@@ -5,7 +5,7 @@
 <%= link_to("Log Out", destroy_user_session_path, method: :delete, :class => 'btn btn-dark') %>
 
 <br><br><hr>
-<h4>Total Orders: <%= @orders.count %></h4> <br>
+<h4>Total Orders: <%= @orders %></h4> <br>
 <h4>Total Revenue: $<%= @revenue %></h4> <br>
 
 <div class="card-deck">
@@ -34,3 +34,12 @@
 <br><hr>
 
 <h4>Overview</h4>
+<p>Revenue split</p>
+<div class="container">
+  <%= pie_chart @revenue_split %>
+</div>
+
+<p>Day to Day Sales
+<div class="container">
+  <%= column_chart @revenue_split %>
+</div>
