@@ -111,6 +111,14 @@ class CustomerController < ApplicationController
       unless candy_id == 'session_id' || candy_id == 'warden.user.customer.key' || candy_id == '_csrf_token'
 
         @candy = Candy.find(candy_id)
+
+        @order = Order.new(:customer_id => @customer.id,
+                          :store_id => @candy.shop_id,
+                          :candy_name => @candy.name,
+                          :candy_price => @candy.price,
+                          :amount => amount.to_i)
+        @order.save
+
         # If candy amount will be 0 after transaction...
         if @candy.amount == amount.to_i
           # Destroy candy
@@ -120,8 +128,6 @@ class CustomerController < ApplicationController
           @candy.amount = @candy.amount - amount.to_i
           @candy.save
         end
-
-        # Add to order table, just keep track of money instead of specific candy?
 
         # Clear the candy from the session hash
         session.delete(candy_id)
