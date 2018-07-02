@@ -15,6 +15,7 @@
       </tr>
     </thead>
     <% @candies.each do |candy| %>
+      <% # If the candy ID is present in the session, highlight row to let user know it is in their cart %>
       <% if session.key?(candy.id) %>
       <tr class="alert-info">
         <td><%= link_to(candy.name, customer_path(@customer, :candy_id => candy.id), :class => 'text-dark') %></td>

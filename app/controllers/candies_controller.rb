@@ -11,7 +11,7 @@ class CandiesController < ApplicationController
 
   def new
     @candy = Candy.new(:shop_id => @shop.id)
-    if !candy_belongs_to_user(@candy)
+    if !@candy.candy_belongs_to_user(current_user)
       flash[:message] = "This shop does not exist in your database."
       redirect_to(shops_path)
     end
@@ -57,7 +57,7 @@ class CandiesController < ApplicationController
 
   def delete
     @candy = Candy.find(params[:id])
-    if !candy_belongs_to_user(@candy)
+    if !@candy.candy_belongs_to_user(current_user)
       flash[:message] = "This candy does not exist in your database."
       redirect_to(shops_path)
     end
@@ -80,16 +80,6 @@ class CandiesController < ApplicationController
   # Used to maintain appropriate shop_id throughout views
   def get_shop
     @shop = Shop.find(params[:shop_id])
-  end
-
-  # Used to make sure candy belong to appropriate shop
-
-  def candy_belongs_to_user(candy)
-    if candy.shop.user_id == current_user.id
-      return true
-    else
-      return false
-    end
   end
 
 end

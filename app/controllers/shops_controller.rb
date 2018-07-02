@@ -18,7 +18,7 @@ class ShopsController < ApplicationController
 
   def show
     @shop = Shop.find(params[:id])
-    if !shop_belongs_to_user(@shop)
+    if !@shop.shop_belongs_to_user(current_user)
       flash[:message] = "This shop does not exist in your database."
       redirect_to(shops_path)
     end
@@ -56,7 +56,7 @@ class ShopsController < ApplicationController
 
   def delete
     @shop = Shop.find(params[:id])
-    if !shop_belongs_to_user(@shop)
+    if !@shop.shop_belongs_to_user(current_user)
       flash[:message] = "This shop does not exist in your database."
       redirect_to(shops_path)
     end
@@ -75,15 +75,6 @@ class ShopsController < ApplicationController
   # Used when creating new shops
   def shop_params
     params.require(:shop).permit(:name, :city, :user_id)
-  end
-
-  # Used to make sure shop indeed belongs to current user
-  def shop_belongs_to_user(shop)
-    if shop.user_id == current_user.id
-      return true
-    else
-      return false
-    end
   end
 
 end

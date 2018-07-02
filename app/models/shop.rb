@@ -9,4 +9,13 @@ class Shop < ApplicationRecord
 
   scope :sorted, lambda { order("name ASC") }
 
+  # Used to make sure shop indeed belongs to current user
+  def shop_belongs_to_user(current_user)
+    if self.user_id == current_user.id
+      return true
+    else
+      return false
+    end
+  end
+
 end

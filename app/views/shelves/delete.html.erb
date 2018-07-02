@@ -6,11 +6,10 @@
 <div class="card">
   <div class="card-body">
     <%= form_for(@shelf, :url => shelf_path(:shop_id => @shop.id), :method => 'delete') do |f| %>
-
-    <p>Permanently delete shelf? (ID: <%= f.object.id %>)</p>
-    <small class="text-secondary">Candies will be moved to unshelved inventory.</small>
-    <br><br>
-    <%= f.submit("Delete Shelf", :class => 'btn btn-danger') %>
+      <p>Permanently delete shelf? (ID: <%= f.object.id %>)</p>
+      <small class="text-secondary">Candies will be moved to unshelved inventory.</small>
+      <br><br>
+      <%= f.submit("Delete Shelf", :class => 'btn btn-danger') %>
     <% end %>
   </div>
 </div>

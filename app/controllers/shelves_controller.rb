@@ -32,7 +32,7 @@ class ShelvesController < ApplicationController
 
   def delete
     @shelf = Shelf.find(params[:id])
-    if !shelf_belongs_to_user(@shelf)
+    if !@shelf.shelf_belongs_to_user(current_user)
       flash[:message] = "This shelf does not exist in your database."
       redirect_to(shops_path)
     end
@@ -57,15 +57,6 @@ class ShelvesController < ApplicationController
   # Used to maintain appropriate shop_id throughout views
   def get_shop
     @shop = Shop.find(params[:shop_id])
-  end
-
-  # Used to make sure shelf belongs to the current user
-  def shelf_belongs_to_user(shelf)
-    if shelf.shop.user_id == current_user.id
-      return true
-    else
-      return false
-    end
   end
 
 end

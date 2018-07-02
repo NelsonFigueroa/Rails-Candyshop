@@ -1,34 +1,30 @@
 class CustomerController < ApplicationController
 
   before_action :authenticate_customer!
+  before_action :get_customer
 
   layout "public"
 
   # Main page for customers
   def index
     @candies = Candy.all
-    @customer = current_customer
   end
 
   # Show candy info, add to cart
   def show
-    @customer = current_customer
     @candy = Candy.find(params[:candy_id])
   end
 
   # Show cart contents
   def show_cart
-    @customer = current_customer
     @grand_total = 0
   end
 
   def edit
-    @customer = current_customer
   end
 
   # Allows customer to add money
   def update
-    @customer = current_customer
 
     # Do not allow user to enter negative money value
     if params[:customer][:money].to_f < 0
@@ -46,7 +42,7 @@ class CustomerController < ApplicationController
       redirect_to(authenticated_customer_path)
       return
     else
-      # If unable to save, render edit
+      # If unable to save, redirect
       flash[:message] = "Invalid input!"
       redirect_to(edit_customer_path)
     end
@@ -54,7 +50,6 @@ class CustomerController < ApplicationController
 
   # Allows customer to add candies to cart
   def update_cart
-    @customer = current_customer
 
     # Make sure candy amount is not negative
     if params[:customer][:amount].to_i < 0
@@ -80,7 +75,6 @@ class CustomerController < ApplicationController
 
   # Allows customer to place and process and order
   def place_order
-    @customer = current_customer
     @grand_total = params[:grand_total].to_f
 
     # Check that customer has enough balance for total order
@@ -101,7 +95,7 @@ class CustomerController < ApplicationController
       end
     end
 
-    # Checks passed, continue processing order
+    ### Checks passed, continue processing order ###
 
     # Subtract from balance
     @customer.money = @customer.money - @grand_total
@@ -145,6 +139,10 @@ class CustomerController < ApplicationController
 
   def customer_params
     params.require(:customer).permit(:money, :candy_id, :amount)
+  end
+
+  def get_customer
+    @customer = current_customer
   end
 
 end

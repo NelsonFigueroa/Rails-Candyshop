@@ -7,9 +7,7 @@
 <%= link_to("Generate Candy", new_candy_path(:shop_id => @shop.id), :class => 'btn btn-primary btn-sm') %>
 <%= link_to("Add Shelf", shelves_path(:shop_id => @shop.id), :class => 'btn btn-primary btn-sm', method: :post) %>
 
-
 <br><br>
-
 
 <h3>Unshelved Inventory: </h3>
 <table class="table table-sm table-bordered table-striped table-hover">
@@ -26,7 +24,6 @@
       <td><%= candy.price %></td>
       <td>
         <%= form_for(candy, :url => candy_path(candy, :shop_id => @shop.id)) do |f| %>
-          <!-- <%= f.select :shelf_id, @shelf_id_nums, :selected => "" %> -->
           <%= f.select :shelf_id, @shelf_id_nums, :include_blank => 'Unshelf' %>
           <%= f.submit("Move Candy", :class => 'btn btn-sm btn-primary') %>
         <% end %>
