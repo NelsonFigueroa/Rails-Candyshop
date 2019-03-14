@@ -13,4 +13,6 @@ docker build . -t candyshop
 docker run --rm -p 3000:3000 candyshop
 ```
 
+View the app in your browser at `127.0.0.1:3000`.
+
 To exit the development server, simply hit `ctrl+c`.
