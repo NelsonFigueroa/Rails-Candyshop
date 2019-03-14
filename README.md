@@ -1,9 +1,16 @@
-# README
+# Candyshop
 
 Developed to learn and understand Rails.
-The application models a candy shop.
+The application imitates an online candy store.
 
-* Ruby version
-2.4.1
-* System dependencies
-Check Gemfile. 
+Run it locally using Docker:
+
+```shell
+# build the image
+docker build . -t candyshop
+
+# run the image
+docker run --rm -p 3000:3000 candyshop
+```
+
+To exit the development server, simply hit `ctrl+c`.
