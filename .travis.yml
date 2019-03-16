@@ -2,7 +2,6 @@ sudo: required
 services:
   - docker
 install:
-  - gem uninstall bundler
-  - gem install bundler --version '2.0.1' # to fix no gem found issue
+  - gem install bundler
 script:
 - docker build . -t candyshop
