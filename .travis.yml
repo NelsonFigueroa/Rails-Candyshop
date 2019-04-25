@@ -1,7 +1,0 @@
-sudo: required
-services:
-  - docker
-install:
-  - gem install bundler
-script:
-- docker build . -t candyshop

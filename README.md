@@ -1,5 +1,4 @@
 # Candyshop
-[![Build Status](https://travis-ci.org/nelsonfigueroa/candyshop.svg?branch=master)](https://travis-ci.org/nelsonfigueroa/candyshop)
 
 Developed to learn and understand Rails.
 The application imitates an online candy store.
